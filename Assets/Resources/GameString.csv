@@ -1,0 +1,30 @@
+name,string
+Money_1,10000원 찍기
+Money_2,20000원 찍기
+Money_3,30000원 찍기
+Money_4,40000원 찍기
+Money_5,50000원 찍기
+Unlock_1,건물 1개 건축
+Unlock_2,건물 2개 건축
+Unlock_3,건물 3개 건축
+Unlock_4,건물 4개 건축
+Unlock_5,건물 5개 건축
+Unlock_6,건물 6개 건축
+Unlock_7,건물 7개 건축
+Unlock_8,건물 8개 건축
+MaxLevel_1,1개 만렙
+MaxLevel_2,2개 만렙
+MaxLevel_3,3개 만렙
+MaxLevel_4,4개 만렙
+MaxLevel_5,5개 만렙
+MaxLevel_6,6개 만렙
+MaxLevel_7,7개 만렙
+MaxLevel_8,8개 만렙
+Reborn_1,한 번 환생
+Class_F,대학등급 F
+Class_D,대학등급 D
+Class_C,대학등급 C
+Class_B,대학등급 B
+Class_A,대학등급 A
+Class_S,대학등급 S
+Ending,엔딩보기

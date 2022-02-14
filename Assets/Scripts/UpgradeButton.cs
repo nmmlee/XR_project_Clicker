@@ -27,11 +27,12 @@ public class UpgradeButton : MonoBehaviour
     public float upgradePow = 1.07f;
 
     public float costPow = 3.14f;
-    public int buildLevels; 
-    
+    public int buildLevels;
+
     void Start()
     {
         DataController.GetInstance().LoadUpgradeButton(this);
+        currentCost2 = costManager.buildingList.building[0].levels[buildLevels];
         UpdateUI();
     }
 
