@@ -12,6 +12,6 @@ public class ClickButton : MonoBehaviour
 
     public void delete()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll(); // 저장된 데이터 모두 삭제
     }
 }

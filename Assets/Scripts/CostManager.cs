@@ -5,17 +5,17 @@ using UnityEngine;
 public class CostManager : MonoBehaviour
 {
 	[System.Serializable]
-	public class Building
+	public class Building // 건물 정보
 	{
-		public string name;
-		public int levelCount = 0;
-		public int[] levels = new int[10];
+		public string name; // 건물 이름
+		public int levelCount = 0; // 건물 level
+		public int[] levels = new int[10]; // 건물 가격
 	}
 
 	[System.Serializable]
 	public class BuildingList
 	{
-		public Building[] building;
+		public Building[] building; // 건물들
 	}
 
 	public BuildingList buildingList = new BuildingList();

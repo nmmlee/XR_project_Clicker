@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public Text goldDisplayer;
-    public Text goldPerClickDisplayer;
-    public Text goldPerSecDisPlayer;
+    public Text goldDisplayer; // √— ∞ÒµÂ text
+    public Text goldPerClickDisplayer; // ≈¨∏Ø ¥Á ∞ÒµÂ text
+    public Text goldPerSecDisPlayer; // √ ¥Á ∞ÒµÂ text
 
     void Update()
     {

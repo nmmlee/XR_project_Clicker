@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DataController : MonoBehaviour
 { 
+    // 싱글톤
     private static DataController instance;
 
     public static DataController GetInstance()
@@ -24,9 +25,9 @@ public class DataController : MonoBehaviour
     private ItemButton[] itemButtons;
 
 
-    private int m_gold = 100000;
+    private int m_gold = 0; // 총 골드
 
-    private int m_goldPerClick = 0;
+    private int m_goldPerClick = 0; // 총 클릭 당 골드
 
     void Awake()
     {
@@ -36,46 +37,46 @@ public class DataController : MonoBehaviour
         itemButtons = FindObjectsOfType<ItemButton>();
     }
 
-    public void SetGold(int newGold)
+    public void SetGold(int newGold) // 돈 저장
     {
         m_gold = newGold;
         PlayerPrefs.SetInt("Gold", m_gold);
     }
 
-    public void AddGold(int newGold)
+    public void AddGold(int newGold) // 돈 추가
     {
         m_gold += newGold;
         SetGold(m_gold);
     }
 
-    public void SubGold(int newGold)
+    public void SubGold(int newGold) // 돈 뺄셈
     {
         m_gold -= newGold;
         SetGold(m_gold);
     }
 
-    public int GetGold()
+    public int GetGold() // 돈 가져오기
     {
         return m_gold;
     }
 
-    public int GetGoldPerClick()
+    public int GetGoldPerClick() // 클릭당 돈 가져오기
     {
         return m_goldPerClick;
     }
 
-    public void SetGoldPerClick(int newGoldPerClick)
+    public void SetGoldPerClick(int newGoldPerClick) // 클릭당 돈 저장
     {
         m_goldPerClick = newGoldPerClick;
         PlayerPrefs.SetInt("GoldPerClick", m_goldPerClick);
     }
-    public void AddGoldPerClick(int newGoldPerClick)
+    public void AddGoldPerClick(int newGoldPerClick) // 클릭당 수입 증가
     {
         m_goldPerClick += newGoldPerClick;
         SetGoldPerClick(m_goldPerClick);
     }
 
-    public void LoadUpgradeButton(UpgradeButton upgradeButton)
+    public void LoadUpgradeButton(UpgradeButton upgradeButton) // UpgradeButton 변수들 PlayerPrefs에 불러오기
     {
         string key = upgradeButton.upgradeName;
 
@@ -85,7 +86,7 @@ public class DataController : MonoBehaviour
         upgradeButton.buildLevels = PlayerPrefs.GetInt(key + "_level", 0);
     }
 
-    public void SaveUpgradeButton(UpgradeButton upgradeButton)
+    public void SaveUpgradeButton(UpgradeButton upgradeButton) // UpgradeButton 변수들 PlayerPrefs에 저장
     {
         string key = upgradeButton.upgradeName;
 
@@ -130,13 +131,13 @@ public class DataController : MonoBehaviour
         }
     }
 
-    public int GetGoldPerSec()
+    public int GetGoldPerSec() // 초당 돈 총합 구하기
     {
         int totalGoldPerSec = 0;
 
         for(int i = 0; i < itemButtons.Length; i++)
         {
-            totalGoldPerSec += itemButtons[i].goldPerSec;
+            totalGoldPerSec += itemButtons[i].goldPerSec; // itemButtons 배열로 모든 itemButton의 초당수입 더하기
         }
 
         return totalGoldPerSec;
