@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Text;
 
 public class DataController : MonoBehaviour
 { 
@@ -28,6 +30,37 @@ public class DataController : MonoBehaviour
     private int m_gold = 0; // 총 골드
 
     private int m_goldPerClick = 0; // 총 클릭 당 골드
+    DateTime GetLastPlayDate()//마지막으로 플레이했던 시간 불러옴
+    {
+        if (!PlayerPrefs.HasKey("Time"))
+        {
+            return DateTime.Now;
+        }
+        string timeBinaryInString = PlayerPrefs.GetString("Time");
+        long timeBinaryInLong = Convert.ToInt64(timeBinaryInString);
+
+        return DateTime.FromBinary(timeBinaryInLong);
+    }
+
+    void UpdateLastPlayDate()//마지막으로 게임을 플레이한 시점 문장으로 저장
+    {
+        PlayerPrefs.SetString("Time", DateTime.Now.ToBinary().ToString());
+    }
+
+    void OnApplicationQuit()//프로그램 종료시 바로 실행
+    {
+        UpdateLastPlayDate();
+    }
+
+    public int timeAfterLastPlay()//마지막 플레이 시점에서 몇초가 지났는지
+    {
+        DateTime currentTime = DateTime.Now;
+        DateTime lastPlayDate = GetLastPlayDate();
+
+        return (int)currentTime.Subtract(lastPlayDate).TotalSeconds;
+
+    }
+
 
     void Awake()
     {
@@ -35,6 +68,12 @@ public class DataController : MonoBehaviour
         m_goldPerClick = PlayerPrefs.GetInt("GoldPerClick", 1);
 
         itemButtons = FindObjectsOfType<ItemButton>();
+    }
+
+    private void Start()
+    {
+        m_gold += GetGoldPerSec() * timeAfterLastPlay();
+        InvokeRepeating("UpdateLastPlayDate",0f,5f);//함수 5초마다 실행
     }
 
     public void SetGold(int newGold) // 돈 저장
@@ -137,9 +176,11 @@ public class DataController : MonoBehaviour
 
         for(int i = 0; i < itemButtons.Length; i++)
         {
-            totalGoldPerSec += itemButtons[i].goldPerSec; // itemButtons 배열로 모든 itemButton의 초당수입 더하기
+            if(itemButtons[i].isPurchase==true)
+                totalGoldPerSec += itemButtons[i].goldPerSec; // itemButtons 배열로 모든 itemButton의 초당수입 더하기
         }
 
         return totalGoldPerSec;
     }
 }
+
