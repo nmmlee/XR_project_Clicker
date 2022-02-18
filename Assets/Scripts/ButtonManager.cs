@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonManager : MonoBehaviour
 {
     public GameObject ReinforcementPanel;
+    public GameObject namePanel;
     private UpgradeButton[] upgradeButtons;
     UpgradeButton upgradeButton;
     CostManager costManager;
@@ -29,6 +30,8 @@ public class ButtonManager : MonoBehaviour
 
         }
         DataController.GetInstance().AddPayGoods(5);
+        DataController.GetInstance().SetGoldPerClick(8);
+        namePanel.SetActive(true);
     }
 
     public void OnClick() // µ· ¹ö´Â ¹öÆ°

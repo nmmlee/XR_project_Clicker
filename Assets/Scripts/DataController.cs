@@ -25,13 +25,18 @@ public class DataController : MonoBehaviour
     }
 
     private ItemButton[] itemButtons;
-
+    public GameObject namePanel;
 
     private int m_gold = 0; // √— ∞ÒµÂ
 
     private int m_goldPerClick = 0; // √— ≈¨∏Ø ¥Á ∞ÒµÂ
 
     private int payGoods = 0; // √— ¿Ø∑· ¿Á»≠
+
+    string currentname;
+    // string[] currentName;
+    // int nameNumber = 0;
+
     DateTime GetLastPlayDate()//∏∂¡ˆ∏∑¿∏∑Œ «√∑π¿Ã«ﬂ¥¯ Ω√∞£ ∫“∑Øø»
     {
         if (!PlayerPrefs.HasKey("Time"))
@@ -203,5 +208,25 @@ public class DataController : MonoBehaviour
 
         return totalGoldPerSec;
     }
+
+
+    // 1¥Î √—¿Â, 2¥Î √—¿Â, 3¥Î √—¿Â ¿Ã∏ß ¥Ÿ ¿˙¿Â
+    public void SaveName(NameManager nameManager)
+    {
+        PlayerPrefs.SetString("Name", nameManager.input);
+        currentname = PlayerPrefs.GetString("Name");
+        Debug.Log(currentname);
+        namePanel.SetActive(false);
+
+        /*
+        PlayerPrefs.SetString(nameNumber.ToString() + "_Name", nameManager.input);
+        currentName[nameNumber] = PlayerPrefs.GetString(nameNumber.ToString() + "_Name");
+        Debug.Log(currentName[nameNumber]);
+        namePanel.SetActive(false);
+
+        nameNumber++;
+        */
+    }
+
 }
 
