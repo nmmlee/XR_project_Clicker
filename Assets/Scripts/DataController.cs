@@ -52,13 +52,15 @@ public class DataController : MonoBehaviour
         UpdateLastPlayDate();
     }
 
-    public int timeAfterLastPlay()//마지막 플레이 시점에서 몇초가 지났는지
+    public int timeAfterLastPlay//마지막 플레이 시점에서 몇초가 지났는지
     {
-        DateTime currentTime = DateTime.Now;
-        DateTime lastPlayDate = GetLastPlayDate();
+        get
+        {
+            DateTime currentTime = DateTime.Now;
+            DateTime lastPlayDate = GetLastPlayDate();
 
-        return (int)currentTime.Subtract(lastPlayDate).TotalSeconds;
-
+            return (int)currentTime.Subtract(lastPlayDate).TotalSeconds;
+        }
     }
 
 
@@ -72,7 +74,7 @@ public class DataController : MonoBehaviour
 
     private void Start()
     {
-        m_gold += GetGoldPerSec() * timeAfterLastPlay();
+        m_gold += GetGoldPerSec() * timeAfterLastPlay;
         InvokeRepeating("UpdateLastPlayDate",0f,5f);//함수 5초마다 실행
     }
 
