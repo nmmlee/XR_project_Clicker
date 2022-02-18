@@ -30,6 +30,8 @@ public class DataController : MonoBehaviour
     private int m_gold = 0; // 총 골드
 
     private int m_goldPerClick = 0; // 총 클릭 당 골드
+
+    private int payGoods = 0; // 총 유료 재화
     DateTime GetLastPlayDate()//마지막으로 플레이했던 시간 불러옴
     {
         if (!PlayerPrefs.HasKey("Time"))
@@ -74,6 +76,23 @@ public class DataController : MonoBehaviour
     {
         m_gold += GetGoldPerSec() * timeAfterLastPlay();
         InvokeRepeating("UpdateLastPlayDate",0f,5f);//함수 5초마다 실행
+    }
+
+    public void SetPayGoods(int newPay)
+    {
+        payGoods = newPay;
+        PlayerPrefs.SetInt("payGoods", payGoods);
+    }
+
+    public void AddPayGoods(int newPay)
+    {
+        payGoods += newPay;
+        SetPayGoods(payGoods);
+    }
+
+    public int GetPayGoods()
+    {
+        return payGoods;
     }
 
     public void SetGold(int newGold) // 돈 저장

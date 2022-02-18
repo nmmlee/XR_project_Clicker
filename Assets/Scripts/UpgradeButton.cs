@@ -16,7 +16,6 @@ public class UpgradeButton : MonoBehaviour
     public int startCurrentCost = 1;
 
     public int currentCost2; // 건물 가격
-   
 
     public int level = 1;
 
@@ -24,11 +23,12 @@ public class UpgradeButton : MonoBehaviour
 
     public float costPow = 3.14f;
     public int buildLevels; // 건물 레벨
+    public int buildNum; // 건물 번호
 
     void Start()
     {
         DataController.GetInstance().LoadUpgradeButton(this); // 모든 데이터 불러옴
-        currentCost2 = costManager.buildingList.building[0].levels[buildLevels]; // 건물 초기값 적용
+        currentCost2 = costManager.buildingList.building[buildNum].levels[buildLevels]; // 건물 초기값 적용
         UpdateUI(); // UI 업데이트
     }
 
@@ -51,7 +51,7 @@ public class UpgradeButton : MonoBehaviour
     {
         goldByUpgrade = startGoldByUpgrade * (int)Mathf.Pow(upgradePow, level);
         // currentCost = startCurrentCost * (int)Mathf.Pow(costPow, level);
-        currentCost2 = costManager.buildingList.building[0].levels[buildLevels];
+        currentCost2 = costManager.buildingList.building[buildNum].levels[buildLevels];
     }
 
     public void UpdateUI() // text 업데이트
