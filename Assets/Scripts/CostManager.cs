@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class CostManager : MonoBehaviour
 {
+	// csv 파일 변수에 저장
+
 	[System.Serializable]
 	public class Building // 건물 정보
 	{
 		public string name; // 건물 이름
 		public int levelCount = 0; // 건물 level
-		public int[] levels = new int[10]; // 건물 가격
+		public int[] levels = new int[30]; // 건물 가격
 	}
 
 	[System.Serializable]
@@ -29,7 +31,7 @@ public class CostManager : MonoBehaviour
 			buildingList.building[i] = new Building();
 			buildingList.building[i].name = (string)data_test[i]["name"];
 
-			for (var j = 0; j < 10; j++)
+			for (var j = 0; j < 30; j++)
 			{
 				buildingList.building[i].levels[j] = (int)data_test[i]["level" + (j + 1).ToString()];
 			}

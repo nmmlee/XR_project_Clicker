@@ -15,7 +15,7 @@ public class ClickBoard : MonoBehaviour
             MousePosition = Camera.ScreenToWorldPoint(MousePosition); // ÁÂÇ¥ º¯È¯
             RaycastHit2D hit = Physics2D.Raycast(MousePosition, transform.forward, 1f, layerMask);
 
-            if (hit)
+            if (hit) // Clickboard¸¦ ´­·¶À» ¶§ ¹«·á ÀçÈ­ È¹µæ
             {
                 int goldPerClick = DataController.GetInstance().GetGoldPerClick();
                 DataController.GetInstance().AddGold(goldPerClick);

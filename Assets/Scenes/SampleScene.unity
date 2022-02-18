@@ -271,17 +271,88 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeDisplayer: {fileID: 1332125991}
   costManager: {fileID: 943789191}
-  upgradeName: Hanwool
+  buildingName: Hanwool
   goldByUpgrade: 0
   startGoldByUpgrade: 1
-  currentCost: 1
-  startCurrentCost: 1
-  currentCost2: 0
+  buildingCost: 0
   level: 1
-  upgradePow: 1.07
-  costPow: 3.14
   buildLevels: 0
   buildNum: 0
+--- !u!1 &35010652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 35010653}
+  - component: {fileID: 35010655}
+  - component: {fileID: 35010654}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &35010653
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35010652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2010221911}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 12.460693, y: -59.26587}
+  m_SizeDelta: {x: 1096.8496, y: 1913.1757}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &35010654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35010652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.48235294}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &35010655
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35010652}
+  m_CullTransparentMesh: 1
 --- !u!1 &81678292
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,15 +586,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeDisplayer: {fileID: 298238637}
   costManager: {fileID: 943789191}
-  upgradeName: Saebit
+  buildingName: Saebit
   goldByUpgrade: 0
   startGoldByUpgrade: 1
-  currentCost: 1
-  startCurrentCost: 1
-  currentCost2: 0
+  buildingCost: 0
   level: 1
-  upgradePow: 1.07
-  costPow: 3.14
   buildLevels: 0
   buildNum: 1
 --- !u!1 &121918933
@@ -2188,15 +2255,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeDisplayer: {fileID: 2079963217}
   costManager: {fileID: 943789191}
-  upgradeName: Bima
+  buildingName: Bima
   goldByUpgrade: 0
   startGoldByUpgrade: 1
-  currentCost: 1
-  startCurrentCost: 1
-  currentCost2: 0
+  buildingCost: 0
   level: 1
-  upgradePow: 1.07
-  costPow: 3.14
   buildLevels: 0
   buildNum: 3
 --- !u!1 &463087708
@@ -3300,7 +3363,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d2f788276931a87479a62e8b9364acc4, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -3929,7 +3992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2, y: -62}
+  m_AnchoredPosition: {x: 64, y: -62}
   m_SizeDelta: {x: 540, y: 65.4462}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &906809877
@@ -3959,7 +4022,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 50
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -4008,8 +4071,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -43, y: 0}
-  m_SizeDelta: {x: 174.3529, y: 37.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 217.35, y: 37.5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &914125509
 MonoBehaviour:
@@ -4038,7 +4101,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -4448,7 +4511,7 @@ RectTransform:
   - {fileID: 776624915}
   - {fileID: 1770404327}
   m_Father: {fileID: 2010221911}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6236,15 +6299,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeDisplayer: {fileID: 1980442781}
   costManager: {fileID: 943789191}
-  upgradeName: 80th
+  buildingName: 80th
   goldByUpgrade: 0
   startGoldByUpgrade: 1
-  currentCost: 1
-  startCurrentCost: 1
-  currentCost2: 0
+  buildingCost: 0
   level: 1
-  upgradePow: 1.07
-  costPow: 3.14
   buildLevels: 0
   buildNum: 7
 --- !u!1 &1384520152
@@ -6395,15 +6454,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeDisplayer: {fileID: 1934199166}
   costManager: {fileID: 943789191}
-  upgradeName: Hwado
+  buildingName: Hwado
   goldByUpgrade: 0
   startGoldByUpgrade: 1
-  currentCost: 1
-  startCurrentCost: 1
-  currentCost2: 0
+  buildingCost: 0
   level: 1
-  upgradePow: 1.07
-  costPow: 3.14
   buildLevels: 0
   buildNum: 6
 --- !u!1 &1390641903
@@ -6561,7 +6616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.0000305, y: 11.499023}
+  m_AnchoredPosition: {x: 64, y: 11.499023}
   m_SizeDelta: {x: 540, y: 100.5523}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1394868543
@@ -6591,7 +6646,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 50
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -6834,8 +6889,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 28, y: 41.278}
-  m_SizeDelta: {x: 201.8472, y: 45.444}
+  m_AnchoredPosition: {x: 40, y: 41.278}
+  m_SizeDelta: {x: 421.0804, y: 45.444}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1432709098
 MonoBehaviour:
@@ -6864,13 +6919,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC774\uB984 : \uD558\uBBFC\uC6A9"
+  m_Text: "\uC774\uB984 : "
 --- !u!222 &1432709099
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8597,7 +8652,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC774\uB984\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694"
+  m_Text: "\uB2F9\uC2E0\uC758 \uC774\uB984\uC740?"
 --- !u!222 &1780508250
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8754,15 +8809,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeDisplayer: {fileID: 1718679815}
   costManager: {fileID: 943789191}
-  upgradeName: Nuri
+  buildingName: Nuri
   goldByUpgrade: 0
   startGoldByUpgrade: 1
-  currentCost: 1
-  startCurrentCost: 1
-  currentCost2: 0
+  buildingCost: 0
   level: 1
-  upgradePow: 1.07
-  costPow: 3.14
   buildLevels: 0
   buildNum: 4
 --- !u!1 &1806332103
@@ -8873,8 +8924,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -308, y: 0}
-  m_SizeDelta: {x: 174.3529, y: 37.5}
+  m_AnchoredPosition: {x: -265, y: 0}
+  m_SizeDelta: {x: 217.35, y: 37.5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1812709708
 MonoBehaviour:
@@ -8903,7 +8954,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 50
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -9933,15 +9984,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeDisplayer: {fileID: 802104246}
   costManager: {fileID: 943789191}
-  upgradeName: Yeongu
+  buildingName: Yeongu
   goldByUpgrade: 0
   startGoldByUpgrade: 1
-  currentCost: 1
-  startCurrentCost: 1
-  currentCost2: 0
+  buildingCost: 0
   level: 1
-  upgradePow: 1.07
-  costPow: 3.14
   buildLevels: 0
   buildNum: 5
 --- !u!1 &1989950214
@@ -10200,7 +10247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2010221911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10212,6 +10259,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 35010653}
   - {fileID: 1035649541}
   m_Father: {fileID: 401496858}
   m_RootOrder: 8
@@ -10565,15 +10613,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeDisplayer: {fileID: 579552635}
   costManager: {fileID: 943789191}
-  upgradeName: Ogui
+  buildingName: Ogui
   goldByUpgrade: 0
   startGoldByUpgrade: 1
-  currentCost: 1
-  startCurrentCost: 1
-  currentCost2: 0
+  buildingCost: 0
   level: 1
-  upgradePow: 1.07
-  costPow: 3.14
   buildLevels: 0
   buildNum: 2
 --- !u!1 &2074220845

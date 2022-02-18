@@ -6,7 +6,9 @@ public class ButtonManager : MonoBehaviour
 {
     public GameObject ReinforcementPanel;
     public GameObject namePanel;
+
     private UpgradeButton[] upgradeButtons;
+
     UpgradeButton upgradeButton;
     CostManager costManager;
 
@@ -24,34 +26,41 @@ public class ButtonManager : MonoBehaviour
 
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
-            upgradeButtons[i].buildLevels = 0;
-            upgradeButtons[i].UpdateUpgrade();
+            upgradeButtons[i].buildLevels = 0; // 강화 레벨 0
+
+            // 버튼 텍스트 업데이트
+            upgradeButtons[i].UpdateUpgrade(); 
             upgradeButtons[i].UpdateUI();
 
         }
-        DataController.GetInstance().AddPayGoods(5);
-        DataController.GetInstance().SetGoldPerClick(8);
+        DataController.GetInstance().AddPayGoods(5); // 유료 재화 추가
+        DataController.GetInstance().SetGoldPerClick(8); // 클릭 당 무료 재화 건물 8개-> 8
         namePanel.SetActive(true);
     }
 
-    public void OnClick() // 돈 버는 버튼
-    {
-        int goldPerClick = DataController.GetInstance().GetGoldPerClick();
-        DataController.GetInstance().AddGold(goldPerClick);
-    }
-
+    // 저장된 데이터 모두 삭제
     public void delete()
     {
-        PlayerPrefs.DeleteAll(); // 저장된 데이터 모두 삭제
+        PlayerPrefs.DeleteAll(); 
     }
 
-    public void ReinforcementOpen() // 강화 패널 열기
+    // 강화 패널 열기
+    public void ReinforcementOpen() 
     {
         ReinforcementPanel.SetActive(true);
     }
 
-    public void ReinforcementClose() // 강화 패널 닫기
+    // 강화 패널 닫기
+    public void ReinforcementClose() 
     {
         ReinforcementPanel.SetActive(false);
     }
+
+    /* 지금은 안 씀
+    public void OnClick() // 돈 버는  버튼
+    {
+        int goldPerClick = DataController.GetInstance().GetGoldPerClick();
+        DataController.GetInstance().AddGold(goldPerClick);
+    }
+    */
 }
