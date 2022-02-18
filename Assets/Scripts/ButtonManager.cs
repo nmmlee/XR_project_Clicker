@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickButton : MonoBehaviour
+public class ButtonManager : MonoBehaviour
 {
     public GameObject ReinforcementPanel;
     private UpgradeButton[] upgradeButtons;
+    UpgradeButton upgradeButton;
+    CostManager costManager;
 
     void Start()
     {
         upgradeButtons = FindObjectsOfType<UpgradeButton>();
+        upgradeButton = GetComponent<UpgradeButton>();
+        costManager = GetComponent<CostManager>();
     }
 
     public void Reborn() // 환생 버튼
@@ -20,8 +24,10 @@ public class ClickButton : MonoBehaviour
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
             upgradeButtons[i].buildLevels = 0;
-        }
+            upgradeButtons[i].UpdateUpgrade();
+            upgradeButtons[i].UpdateUI();
 
+        }
         DataController.GetInstance().AddPayGoods(5);
     }
 

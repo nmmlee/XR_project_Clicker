@@ -25,7 +25,7 @@ public class UpgradeButton : MonoBehaviour
     public int buildLevels; // 건물 레벨
     public int buildNum; // 건물 번호
 
-    void Start()
+    public void Start()
     {
         DataController.GetInstance().LoadUpgradeButton(this); // 모든 데이터 불러옴
         currentCost2 = costManager.buildingList.building[buildNum].levels[buildLevels]; // 건물 초기값 적용
