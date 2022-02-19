@@ -637,7 +637,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReinforcementPanel: {fileID: 1319876701}
-  namePanel: {fileID: 2010221910}
 --- !u!1 &161273266
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,6 +2511,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2527,6 +2527,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6396631987a187d4a86bdac61ecbcb3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orthoZoomSpeed: 0.5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -7436,7 +7449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReinforcementPanel: {fileID: 0}
-  namePanel: {fileID: 0}
 --- !u!1 &1480360327
 GameObject:
   m_ObjectHideFlags: 0
@@ -7705,7 +7717,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReinforcementPanel: {fileID: 0}
-  namePanel: {fileID: 0}
 --- !u!1 &1553267494
 GameObject:
   m_ObjectHideFlags: 0
@@ -8964,7 +8975,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1806332105
 BoxCollider2D:
@@ -10934,5 +10945,5 @@ Transform:
   m_Children:
   - {fileID: 1349545343}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
