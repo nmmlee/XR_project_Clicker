@@ -34,8 +34,8 @@ public class DataController : MonoBehaviour
 
     string currentname; // 이름 입력
 
-    // string[] currentName;
-    // int nameNumber = 0;
+    string[] currentName;
+    int nameNumber = 0;
 
     DateTime GetLastPlayDate() // 마지막으로 플레이했던 시간 불러옴
     {
@@ -175,19 +175,19 @@ public class DataController : MonoBehaviour
     // 이름 저장 함수
     public void SaveName(NameManager nameManager)
     {
+        /*
         PlayerPrefs.SetString("Name", nameManager.input);
         currentname = PlayerPrefs.GetString("Name");
         Debug.Log(currentname);
         namePanel.SetActive(false);
+        */
 
-        /*
         PlayerPrefs.SetString(nameNumber.ToString() + "_Name", nameManager.input);
         currentName[nameNumber] = PlayerPrefs.GetString(nameNumber.ToString() + "_Name");
         Debug.Log(currentName[nameNumber]);
         namePanel.SetActive(false);
 
         nameNumber++;
-        */
     }
 
 
