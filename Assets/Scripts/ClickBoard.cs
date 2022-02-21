@@ -19,6 +19,7 @@ public class ClickBoard : MonoBehaviour
             {
                 int goldPerClick = DataController.GetInstance().GetGoldPerClick();
                 DataController.GetInstance().AddGold(goldPerClick);
+                DataController.GetInstance().AddTotalGold(goldPerClick);
             }
         }
     }

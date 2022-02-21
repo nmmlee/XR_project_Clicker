@@ -26,6 +26,8 @@ public class DataController : MonoBehaviour
     private ItemButton[] itemButtons; // 차후에 사용할 예정
     public GameObject namePanel;
 
+    private int totalGold = 0;
+
     private int m_gold = 0; // 총 무료 재화
 
     private int m_goldPerClick = 0; // 총 클릭 당 무료 재화
@@ -77,7 +79,9 @@ public class DataController : MonoBehaviour
     {
         m_gold = PlayerPrefs.GetInt("Gold"); // 무료 재화 로컬 서버에서 불러오기
         m_goldPerClick = PlayerPrefs.GetInt("GoldPerClick", 1); // 클릭 당 무료 재화 로컬 서버에서 불러오기
+        totalGold = PlayerPrefs.GetInt("TotalGold");
         payGoods = PlayerPrefs.GetInt("payGoods");
+
         itemButtons = FindObjectsOfType<ItemButton>();
 
         namePanel.SetActive(true); // 첫 이름 입력
@@ -86,6 +90,7 @@ public class DataController : MonoBehaviour
     private void Start()
     {
         m_gold += GetGoldPerSec() * timeAfterLastPlay;
+        totalGold += GetGoldPerSec() * timeAfterLastPlay;
         InvokeRepeating("UpdateLastPlayDate", 0f, 5f);//함수 5초마다 실행
     }
 
@@ -117,6 +122,24 @@ public class DataController : MonoBehaviour
     public int GetPayGoods()
     {
         return payGoods;
+    }
+    public int GetTotalGold()
+    {
+        return totalGold;
+    }
+
+    // 누적 재화 로컬 서버 저장
+    public void SetTotalGold(int newGold)
+    {
+        totalGold = newGold;
+        PlayerPrefs.SetInt("TotalGold", totalGold);
+    }
+
+    // 누적 재화 덧셈
+    public void AddTotalGold(int newGold)
+    {
+        totalGold += newGold;
+        SetTotalGold(totalGold);
     }
 
     // 무료 재화 로컬 서버 저장

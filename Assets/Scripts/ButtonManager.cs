@@ -10,6 +10,10 @@ public class ButtonManager : MonoBehaviour
 
     private UpgradeButton[] upgradeButtons;
 
+    // 환생 조건( 모든 버튼 10렙 달성)
+    public int rebornPossible = 0;
+    public bool is10Level = false;
+
     UpgradeButton upgradeButton;
     CostManager costManager;
 
@@ -22,21 +26,49 @@ public class ButtonManager : MonoBehaviour
 
     public void Reborn() // 환생 버튼
     {
-        ReinforcementPanel.SetActive(true);
-        Debug.Log(upgradeButtons.Length);
-
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
-            upgradeButtons[i].buildLevels = 0; // 강화 레벨 0
-
-            // 버튼 텍스트 업데이트
-            upgradeButtons[i].UpdateUpgrade();
-            upgradeButtons[i].UpdateUI();
+            if (upgradeButtons[i].buildLevels >= 10)
+            {
+                rebornPossible += 1;
+            }
 
         }
-        DataController.GetInstance().AddPayGoods(5); // 유료 재화 추가
-        DataController.GetInstance().SetGoldPerClick(8); // 클릭 당 무료 재화 건물 8개-> 8
-        namePanel.SetActive(true);
+
+        Debug.Log(rebornPossible);
+
+        if (rebornPossible == 8)
+        {
+            is10Level = true;
+        }
+        else
+        {
+            is10Level = false;
+        }
+
+        if (is10Level)
+        {
+            ReinforcementPanel.SetActive(true);
+            Debug.Log(upgradeButtons.Length);
+
+            for (int i = 0; i < upgradeButtons.Length; i++)
+            {
+                upgradeButtons[i].buildLevels = 0; // 강화 레벨 0
+
+                // 버튼 텍스트 업데이트
+                upgradeButtons[i].UpdateUpgrade();
+                upgradeButtons[i].UpdateUI();
+
+            }
+            DataController.GetInstance().AddPayGoods(5); // 유료 재화 추가
+            DataController.GetInstance().SetGoldPerClick(8); // 클릭 당 무료 재화 건물 8개-> 8
+            namePanel.SetActive(true);
+
+            rebornPossible = 0;
+        }
+
+        else
+            Debug.Log("10렙 안 됨");
     }
 
     // 저장된 데이터 모두 삭제

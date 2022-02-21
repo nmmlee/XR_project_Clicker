@@ -53,6 +53,7 @@ public class ItemButton : MonoBehaviour
             if (isPurchase)
             {
                 DataController.GetInstance().AddGold(goldPerSec);
+                DataController.GetInstance().AddTotalGold(goldPerSec);
             }
 
             yield return new WaitForSeconds(1.0f);
