@@ -1,30 +1,30 @@
-name,string
-Money_1,10000¿ø Âï±â
-Money_2,20000¿ø Âï±â
-Money_3,30000¿ø Âï±â
-Money_4,40000¿ø Âï±â
-Money_5,50000¿ø Âï±â
-Unlock_1,°Ç¹° 1°³ °ÇÃà
-Unlock_2,°Ç¹° 2°³ °ÇÃà
-Unlock_3,°Ç¹° 3°³ °ÇÃà
-Unlock_4,°Ç¹° 4°³ °ÇÃà
-Unlock_5,°Ç¹° 5°³ °ÇÃà
-Unlock_6,°Ç¹° 6°³ °ÇÃà
-Unlock_7,°Ç¹° 7°³ °ÇÃà
-Unlock_8,°Ç¹° 8°³ °ÇÃà
-MaxLevel_1,1°³ ¸¸·¾
-MaxLevel_2,2°³ ¸¸·¾
-MaxLevel_3,3°³ ¸¸·¾
-MaxLevel_4,4°³ ¸¸·¾
-MaxLevel_5,5°³ ¸¸·¾
-MaxLevel_6,6°³ ¸¸·¾
-MaxLevel_7,7°³ ¸¸·¾
-MaxLevel_8,8°³ ¸¸·¾
-Reborn_1,ÇÑ ¹ø È¯»ı
-Class_F,´ëÇĞµî±Ş F
-Class_D,´ëÇĞµî±Ş D
-Class_C,´ëÇĞµî±Ş C
-Class_B,´ëÇĞµî±Ş B
-Class_A,´ëÇĞµî±Ş A
-Class_S,´ëÇĞµî±Ş S
-Ending,¿£µùº¸±â
+ï»¿name,string
+Money_1,10000ì› ì°ê¸°
+Money_2,20000ì› ì°ê¸°
+Money_3,30000ì› ì°ê¸°
+Money_4,40000ì› ì°ê¸°
+Money_5,50000ì› ì°ê¸°
+Unlock_1,ê±´ë¬¼ 1ê°œ ê±´ì¶•
+Unlock_2,ê±´ë¬¼ 2ê°œ ê±´ì¶•
+Unlock_3,ê±´ë¬¼ 3ê°œ ê±´ì¶•
+Unlock_4,ê±´ë¬¼ 4ê°œ ê±´ì¶•
+Unlock_5,ê±´ë¬¼ 5ê°œ ê±´ì¶•
+Unlock_6,ê±´ë¬¼ 6ê°œ ê±´ì¶•
+Unlock_7,ê±´ë¬¼ 7ê°œ ê±´ì¶•
+Unlock_8,ê±´ë¬¼ 8ê°œ ê±´ì¶•
+MaxLevel_1,1ê°œ ë§Œë ™
+MaxLevel_2,2ê°œ ë§Œë ™
+MaxLevel_3,3ê°œ ë§Œë ™
+MaxLevel_4,4ê°œ ë§Œë ™
+MaxLevel_5,5ê°œ ë§Œë ™
+MaxLevel_6,6ê°œ ë§Œë ™
+MaxLevel_7,7ê°œ ë§Œë ™
+MaxLevel_8,8ê°œ ë§Œë ™
+Reborn_1,í•œ ë²ˆ í™˜ìƒ
+Class_F,ëŒ€í•™ë“±ê¸‰ F
+Class_D,ëŒ€í•™ë“±ê¸‰ D
+Class_C,ëŒ€í•™ë“±ê¸‰ C
+Class_B,ëŒ€í•™ë“±ê¸‰ B
+Class_A,ëŒ€í•™ë“±ê¸‰ A
+Class_S,ëŒ€í•™ë“±ê¸‰ S
+Ending,ì—”ë”©ë³´ê¸°
