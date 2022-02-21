@@ -6,6 +6,7 @@ public class ButtonManager : MonoBehaviour
 {
     public GameObject ReinforcementPanel;
     public GameObject namePanel;
+    public GameObject AcheivementPanel;
 
     private UpgradeButton[] upgradeButtons;
 
@@ -29,7 +30,7 @@ public class ButtonManager : MonoBehaviour
             upgradeButtons[i].buildLevels = 0; // 강화 레벨 0
 
             // 버튼 텍스트 업데이트
-            upgradeButtons[i].UpdateUpgrade(); 
+            upgradeButtons[i].UpdateUpgrade();
             upgradeButtons[i].UpdateUI();
 
         }
@@ -41,19 +42,29 @@ public class ButtonManager : MonoBehaviour
     // 저장된 데이터 모두 삭제
     public void delete()
     {
-        PlayerPrefs.DeleteAll(); 
+        PlayerPrefs.DeleteAll();
     }
 
     // 강화 패널 열기
-    public void ReinforcementOpen() 
+    public void ReinforcementOpen()
     {
         ReinforcementPanel.SetActive(true);
     }
 
     // 강화 패널 닫기
-    public void ReinforcementClose() 
+    public void ReinforcementClose()
     {
         ReinforcementPanel.SetActive(false);
+    }
+
+    public void AcheivementOpen()
+    {
+        AcheivementPanel.SetActive(true);
+    }
+
+    public void AcheivementClose()
+    {
+        AcheivementPanel.SetActive(false);
     }
 
     /* 지금은 안 씀

@@ -32,10 +32,10 @@ public class DataController : MonoBehaviour
 
     private int payGoods = 0; // 총 유료 재화
 
-    string currentname; // 이름 입력
+    public string currentname; // 이름 입력
 
-    string[] currentName;
-    int nameNumber = 0;
+    List<string> Names = new List<string>(); // 이름 담을 배열
+    int nameNumber; // 이름 배열 길이
 
     DateTime GetLastPlayDate() // 마지막으로 플레이했던 시간 불러옴
     {
@@ -175,19 +175,17 @@ public class DataController : MonoBehaviour
     // 이름 저장 함수
     public void SaveName(NameManager nameManager)
     {
-        /*
         PlayerPrefs.SetString("Name", nameManager.input);
         currentname = PlayerPrefs.GetString("Name");
         Debug.Log(currentname);
         namePanel.SetActive(false);
-        */
 
-        PlayerPrefs.SetString(nameNumber.ToString() + "_Name", nameManager.input);
-        currentName[nameNumber] = PlayerPrefs.GetString(nameNumber.ToString() + "_Name");
-        Debug.Log(currentName[nameNumber]);
-        namePanel.SetActive(false);
-
+        Names.Add(currentname);
         nameNumber++;
+
+        for (int i = 0; i < nameNumber; i++)
+            Debug.Log(Names[i]);
+
     }
 
 
