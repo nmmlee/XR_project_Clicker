@@ -39,7 +39,10 @@ public class DataController : MonoBehaviour
     public List<string> Names = new List<string>(); // 이름 담을 배열
     public int nameNumber; // 이름 배열 길이
 
-    public float playTime;
+    public float playTime; // 플레이타임
+
+    public int[] year; //몇 대 총장이 몇 년 까지 했는지
+    public int[] semester; // 몇 대 총장이 몇 학기 까지 했는지
 
     DateTime GetLastPlayDate() // 마지막으로 플레이했던 시간 불러옴
     {
@@ -96,7 +99,10 @@ public class DataController : MonoBehaviour
 
     private void Update()
     {
-        playTime += Time.deltaTime;
+        playTime += Time.deltaTime; // 플레이타임 저장
+
+        year = new int[nameNumber + 1]; // 몇 대 총장이 몇 년 까지 했는지
+        semester = new int[nameNumber + 1]; // 몇 대 총장이 몇 학기 까지 했는지
     }
 
     // 유료 재화 로컬 서버 저장
@@ -212,7 +218,6 @@ public class DataController : MonoBehaviour
     {
         PlayerPrefs.SetString("Name", nameManager.input);
         currentname = PlayerPrefs.GetString("Name");
-        Debug.Log(currentname);
         namePanel.SetActive(false);
 
         Names.Add(currentname);
