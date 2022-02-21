@@ -66,12 +66,4 @@ public class ButtonManager : MonoBehaviour
     {
         AcheivementPanel.SetActive(false);
     }
-
-    /* 지금은 안 씀
-    public void OnClick() // 돈 버는  버튼
-    {
-        int goldPerClick = DataController.GetInstance().GetGoldPerClick();
-        DataController.GetInstance().AddGold(goldPerClick);
-    }
-    */
 }

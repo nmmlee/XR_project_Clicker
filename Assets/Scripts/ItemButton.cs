@@ -18,7 +18,7 @@ public class ItemButton : MonoBehaviour
 
     public int startGoldPerSec = 1;
 
-    public float costPow = 3.14f;
+    public float costPow = 1.07f;
 
     public float upgradePow = 1.07f;
 
@@ -34,10 +34,10 @@ public class ItemButton : MonoBehaviour
 
     public void PurchaseItem()
     {
-        if(DataController.GetInstance().GetGold() >= currentCost)
+        if (DataController.GetInstance().GetPayGoods() >= currentCost)
         {
             isPurchase = true;
-            DataController.GetInstance().SubGold(currentCost);
+            DataController.GetInstance().SubPayGoods(currentCost);
             level++;
 
             UpdateItem();
@@ -48,9 +48,9 @@ public class ItemButton : MonoBehaviour
 
     IEnumerator AddGoldLoop()
     {
-        while(true)
+        while (true)
         {
-            if(isPurchase)
+            if (isPurchase)
             {
                 DataController.GetInstance().AddGold(goldPerSec);
             }
@@ -61,7 +61,7 @@ public class ItemButton : MonoBehaviour
 
     public void UpdateItem()
     {
-        goldPerSec = goldPerSec + startGoldPerSec * (int) Mathf.Pow(upgradePow, level);
+        goldPerSec = goldPerSec + startGoldPerSec * (int)Mathf.Pow(upgradePow, level);
         currentCost = startCurrentCost * (int)Mathf.Pow(costPow, level);
     }
 

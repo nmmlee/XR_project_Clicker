@@ -77,7 +77,7 @@ public class DataController : MonoBehaviour
     {
         m_gold = PlayerPrefs.GetInt("Gold"); // 무료 재화 로컬 서버에서 불러오기
         m_goldPerClick = PlayerPrefs.GetInt("GoldPerClick", 1); // 클릭 당 무료 재화 로컬 서버에서 불러오기
-
+        payGoods = PlayerPrefs.GetInt("payGoods");
         itemButtons = FindObjectsOfType<ItemButton>();
 
         namePanel.SetActive(true); // 첫 이름 입력
@@ -105,6 +105,11 @@ public class DataController : MonoBehaviour
     public void AddPayGoods(int newPay)
     {
         payGoods += newPay;
+        SetPayGoods(payGoods);
+    }
+    public void SubPayGoods(int newPay)
+    {
+        payGoods -= newPay;
         SetPayGoods(payGoods);
     }
 
@@ -166,9 +171,8 @@ public class DataController : MonoBehaviour
     {
         string key = upgradeButton.buildingName;
 
-        upgradeButton.level = PlayerPrefs.GetInt(key + "_level", 1);
         upgradeButton.goldByUpgrade = PlayerPrefs.GetInt(key + "_goldByUpgrade", upgradeButton.startGoldByUpgrade);
-        upgradeButton.buildLevels = PlayerPrefs.GetInt(key + "_level", 0);
+        upgradeButton.buildLevels = PlayerPrefs.GetInt(key + "_upgradeLevel", 0);
     }
 
     // UpgradeButton 변수들 PlayerPrefs에 저장
@@ -176,9 +180,8 @@ public class DataController : MonoBehaviour
     {
         string key = upgradeButton.buildingName;
 
-        PlayerPrefs.SetInt(key + "_level", upgradeButton.level);
         PlayerPrefs.SetInt(key + "_goldByUpgrade", upgradeButton.startGoldByUpgrade);
-        PlayerPrefs.SetInt(key + "_level", upgradeButton.buildLevels);
+        PlayerPrefs.SetInt(key + "_upgradeLevel", upgradeButton.buildLevels);
     }
 
     // 이름 저장 함수
@@ -203,7 +206,7 @@ public class DataController : MonoBehaviour
     public void LoadItemButton(ItemButton itemButton)
     {
         string key = itemButton.itemName;
-        itemButton.level = PlayerPrefs.GetInt(key + "_level");
+        itemButton.level = PlayerPrefs.GetInt(key + "_itemLevel");
         itemButton.currentCost = PlayerPrefs.GetInt(key + "_cost", itemButton.startCurrentCost);
         itemButton.goldPerSec = PlayerPrefs.GetInt(key + "_goldPerSec");
 
@@ -222,7 +225,7 @@ public class DataController : MonoBehaviour
     public void SaveItemButton(ItemButton itemButton)
     {
         string key = itemButton.itemName;
-        PlayerPrefs.SetInt(key + "_level", itemButton.level);
+        PlayerPrefs.SetInt(key + "_itemLevel", itemButton.level);
         PlayerPrefs.SetInt(key + "_cost", itemButton.startCurrentCost);
         PlayerPrefs.SetInt(key + "_goldPerSec", itemButton.goldPerSec);
 
