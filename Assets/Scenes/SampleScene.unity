@@ -2072,6 +2072,7 @@ MonoBehaviour:
   goldPerClickDisplayer: {fileID: 1394868543}
   goldPerSecDisPlayer: {fileID: 906809877}
   payGoodsDisPlayer: {fileID: 914125509}
+  semesterText: {fileID: 1910711014}
   playerName: 
   playerNum: 0
   year: 
@@ -134206,6 +134207,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   namePanel: {fileID: 2010221910}
   currentname: 
+  Names: []
+  nameNumber: 0
+  playTime: 0
 --- !u!1 &1258782788
 GameObject:
   m_ObjectHideFlags: 0
@@ -136343,7 +136347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdec425e8e5a5140ad68aaa7247d36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReinforcementPanel: {fileID: 0}
 --- !u!1 &1480360327
 GameObject:
   m_ObjectHideFlags: 0
@@ -136611,7 +136614,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdec425e8e5a5140ad68aaa7247d36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReinforcementPanel: {fileID: 0}
 --- !u!1 &1553267494
 GameObject:
   m_ObjectHideFlags: 0

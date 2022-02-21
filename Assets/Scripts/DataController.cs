@@ -5,7 +5,7 @@ using System;
 using System.Text;
 
 public class DataController : MonoBehaviour
-{ 
+{
     // 싱글톤
     private static DataController instance;
     public static DataController GetInstance()
@@ -34,8 +34,10 @@ public class DataController : MonoBehaviour
 
     public string currentname; // 이름 입력
 
-    List<string> Names = new List<string>(); // 이름 담을 배열
-    int nameNumber; // 이름 배열 길이
+    public List<string> Names = new List<string>(); // 이름 담을 배열
+    public int nameNumber; // 이름 배열 길이
+
+    public float playTime;
 
     DateTime GetLastPlayDate() // 마지막으로 플레이했던 시간 불러옴
     {
@@ -77,12 +79,19 @@ public class DataController : MonoBehaviour
         m_goldPerClick = PlayerPrefs.GetInt("GoldPerClick", 1); // 클릭 당 무료 재화 로컬 서버에서 불러오기
 
         itemButtons = FindObjectsOfType<ItemButton>();
+
+        namePanel.SetActive(true); // 첫 이름 입력
     }
 
     private void Start()
     {
         m_gold += GetGoldPerSec() * timeAfterLastPlay;
-        InvokeRepeating("UpdateLastPlayDate",0f,5f);//함수 5초마다 실행
+        InvokeRepeating("UpdateLastPlayDate", 0f, 5f);//함수 5초마다 실행
+    }
+
+    private void Update()
+    {
+        playTime += Time.deltaTime;
     }
 
     // 유료 재화 로컬 서버 저장
@@ -127,33 +136,33 @@ public class DataController : MonoBehaviour
     }
 
     // 무료 재화 불러오는 함수
-    public int GetGold() 
+    public int GetGold()
     {
         return m_gold;
     }
 
     // 클릭 당 무료 재화 가져오기
-    public int GetGoldPerClick() 
+    public int GetGoldPerClick()
     {
         return m_goldPerClick;
     }
 
     // 클릭 당 무료 재화 저장
-    public void SetGoldPerClick(int newGoldPerClick) 
+    public void SetGoldPerClick(int newGoldPerClick)
     {
         m_goldPerClick = newGoldPerClick;
         PlayerPrefs.SetInt("GoldPerClick", m_goldPerClick);
     }
 
     // 클릭 당 무료 재화 증가
-    public void AddGoldPerClick(int newGoldPerClick) 
+    public void AddGoldPerClick(int newGoldPerClick)
     {
         m_goldPerClick += newGoldPerClick;
         SetGoldPerClick(m_goldPerClick);
     }
 
     // UpgradeButton 변수들 PlayerPrefs에서 불러오기
-    public void LoadUpgradeButton(UpgradeButton upgradeButton) 
+    public void LoadUpgradeButton(UpgradeButton upgradeButton)
     {
         string key = upgradeButton.buildingName;
 
@@ -163,7 +172,7 @@ public class DataController : MonoBehaviour
     }
 
     // UpgradeButton 변수들 PlayerPrefs에 저장
-    public void SaveUpgradeButton(UpgradeButton upgradeButton) 
+    public void SaveUpgradeButton(UpgradeButton upgradeButton)
     {
         string key = upgradeButton.buildingName;
 
@@ -217,7 +226,7 @@ public class DataController : MonoBehaviour
         PlayerPrefs.SetInt(key + "_cost", itemButton.startCurrentCost);
         PlayerPrefs.SetInt(key + "_goldPerSec", itemButton.goldPerSec);
 
-        if(itemButton.isPurchase == true)
+        if (itemButton.isPurchase == true)
         {
             PlayerPrefs.SetInt(key + "_isPurchase", 1);
         }
