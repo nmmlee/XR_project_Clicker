@@ -8,7 +8,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject namePanel;
     public GameObject AcheivementPanel;
 
-    private UpgradeButton[] upgradeButtons;
+    public UpgradeButton[] upgradeButtons;
 
     // 환생 조건( 모든 버튼 10렙 달성)
     public int rebornPossible = 0;

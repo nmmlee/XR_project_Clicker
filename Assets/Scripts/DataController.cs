@@ -25,8 +25,9 @@ public class DataController : MonoBehaviour
 
     private ItemButton[] itemButtons; // 차후에 사용할 예정
     public GameObject namePanel;
+    public GameObject evaluatePanel;
 
-    private int totalGold = 0;
+    private int totalGold = 0; // 총 소비한 재화
 
     private int m_gold = 0; // 총 무료 재화
 
@@ -43,6 +44,40 @@ public class DataController : MonoBehaviour
 
     public int[] year; //몇 대 총장이 몇 년 까지 했는지
     public int[] semester; // 몇 대 총장이 몇 학기 까지 했는지
+
+    public int currentYear; // 현재 년도
+
+    private void Awake()
+    {
+        m_gold = PlayerPrefs.GetInt("Gold"); // 무료 재화 로컬 서버에서 불러오기
+        m_goldPerClick = PlayerPrefs.GetInt("GoldPerClick", 1); // 클릭 당 무료 재화 로컬 서버에서 불러오기
+        totalGold = PlayerPrefs.GetInt("TotalGold");
+        payGoods = PlayerPrefs.GetInt("payGoods");
+
+        itemButtons = FindObjectsOfType<ItemButton>();
+
+        namePanel.SetActive(true); // 첫 이름 입력
+    }
+
+    private void Start()
+    {
+        m_gold += GetGoldPerSec() * timeAfterLastPlay;
+        totalGold += GetGoldPerSec() * timeAfterLastPlay;
+        InvokeRepeating("UpdateLastPlayDate", 0f, 5f);//함수 5초마다 실행
+
+        year = new int[nameNumber + 1]; // 몇 대 총장이 몇 년 까지 했는지
+        semester = new int[nameNumber + 1]; // 몇 대 총장이 몇 학기 까지 했는지
+
+        currentYear = year[nameNumber]; // 현재 연도 저장
+    }
+
+    private void Update()
+    {
+        playTime += Time.deltaTime; // 플레이타임 저장
+
+
+        CheckYear(); // 해가 바뀌는지 확인
+    }
 
     DateTime GetLastPlayDate() // 마지막으로 플레이했던 시간 불러옴
     {
@@ -77,34 +112,6 @@ public class DataController : MonoBehaviour
         }
     }
 
-
-    void Awake()
-    {
-        m_gold = PlayerPrefs.GetInt("Gold"); // 무료 재화 로컬 서버에서 불러오기
-        m_goldPerClick = PlayerPrefs.GetInt("GoldPerClick", 1); // 클릭 당 무료 재화 로컬 서버에서 불러오기
-        totalGold = PlayerPrefs.GetInt("TotalGold");
-        payGoods = PlayerPrefs.GetInt("payGoods");
-
-        itemButtons = FindObjectsOfType<ItemButton>();
-
-        namePanel.SetActive(true); // 첫 이름 입력
-    }
-
-    private void Start()
-    {
-        m_gold += GetGoldPerSec() * timeAfterLastPlay;
-        totalGold += GetGoldPerSec() * timeAfterLastPlay;
-        InvokeRepeating("UpdateLastPlayDate", 0f, 5f);//함수 5초마다 실행
-    }
-
-    private void Update()
-    {
-        playTime += Time.deltaTime; // 플레이타임 저장
-
-        year = new int[nameNumber + 1]; // 몇 대 총장이 몇 년 까지 했는지
-        semester = new int[nameNumber + 1]; // 몇 대 총장이 몇 학기 까지 했는지
-    }
-
     // 유료 재화 로컬 서버 저장
     public void SetPayGoods(int newPay)
     {
@@ -118,6 +125,7 @@ public class DataController : MonoBehaviour
         payGoods += newPay;
         SetPayGoods(payGoods);
     }
+
     public void SubPayGoods(int newPay)
     {
         payGoods -= newPay;
@@ -129,6 +137,7 @@ public class DataController : MonoBehaviour
     {
         return payGoods;
     }
+
     public int GetTotalGold()
     {
         return totalGold;
@@ -228,8 +237,6 @@ public class DataController : MonoBehaviour
 
     }
 
-
-
     // 아이템 관련 함수들은 차후에 사용할 예정
     public void LoadItemButton(ItemButton itemButton)
     {
@@ -248,7 +255,6 @@ public class DataController : MonoBehaviour
             itemButton.isPurchase = false;
         }
     }
-
 
     public void SaveItemButton(ItemButton itemButton)
     {
@@ -278,6 +284,21 @@ public class DataController : MonoBehaviour
         }
 
         return totalGoldPerSec;
+    }
+
+    //연도가 바뀌는지 확인하는 코드
+    public void CheckYear()
+    {
+        if (nameNumber > 0)
+        {
+            if (year[nameNumber - 1] != currentYear)
+            {
+                evaluatePanel.SetActive(true);
+
+                return;
+            }
+
+        }
     }
 
 }

@@ -72,6 +72,5 @@ public class UIManager : MonoBehaviour
             case 4: semesterText.text = "" + dataController.year[playerNum] + "³â " + "°Ü¿ï"; break;
         }
 
-        return;
     }
 }
