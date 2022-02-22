@@ -65,8 +65,8 @@ public class DataController : MonoBehaviour
         totalGold += GetGoldPerSec() * timeAfterLastPlay;
         InvokeRepeating("UpdateLastPlayDate", 0f, 5f);//함수 5초마다 실행
 
-        year = new int[nameNumber + 1]; // 몇 대 총장이 몇 년 까지 했는지
-        semester = new int[nameNumber + 1]; // 몇 대 총장이 몇 학기 까지 했는지
+        year = new int[10];
+        semester = new int[10];
 
         currentYear = year[nameNumber]; // 현재 연도 저장
     }
@@ -74,7 +74,6 @@ public class DataController : MonoBehaviour
     private void Update()
     {
         playTime += Time.deltaTime; // 플레이타임 저장
-
 
         CheckYear(); // 해가 바뀌는지 확인
     }
@@ -231,6 +230,9 @@ public class DataController : MonoBehaviour
 
         Names.Add(currentname);
         nameNumber++;
+
+        year = new int[100]; // 몇 대 총장이 몇 년 까지 했는지
+        semester = new int[100]; // 몇 대 총장이 몇 학기 까지 했는지
 
         for (int i = 0; i < nameNumber; i++)
             Debug.Log(Names[i]);
