@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EvaluateManager : MonoBehaviour
 {
-    DataController dataController;
+    public DataController dataController;
     public ButtonManager buttonManager;
 
     public Text classText;  // 학교 등급 텍스트
@@ -33,9 +33,15 @@ public class EvaluateManager : MonoBehaviour
         divideClass = 30; //변수 초기화
     }
 
-    void Update()
+    void OnEnable()
     {
         Evaluation();
+
+    }
+
+    void Update()
+    {
+
     }
 
     public void Evaluation()
