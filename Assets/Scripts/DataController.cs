@@ -23,7 +23,7 @@ public class DataController : MonoBehaviour
         return instance;
     }
 
-    private ItemButton[] itemButtons; // 차후에 사용할 예정
+    public ItemButton[] itemButtons; // 차후에 사용할 예정
     public GameObject namePanel;
     public GameObject evaluatePanel;
 
