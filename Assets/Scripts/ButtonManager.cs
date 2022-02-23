@@ -8,7 +8,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject namePanel;
     public GameObject AcheivementPanel;
 
-    private UpgradeButton[] upgradeButtons;
+    public UpgradeButton[] upgradeButtons;
 
     // 환생 조건( 모든 버튼 10렙 달성)
     public int rebornPossible = 0;
@@ -17,11 +17,20 @@ public class ButtonManager : MonoBehaviour
     UpgradeButton upgradeButton;
     CostManager costManager;
 
+    Vector3 pos;
+    Vector3 pos2;
+
     void Start()
     {
         upgradeButtons = FindObjectsOfType<UpgradeButton>();
         upgradeButton = GetComponent<UpgradeButton>();
         costManager = GetComponent<CostManager>();
+
+        pos = ReinforcementPanel.transform.position;
+        pos.y = -1058;
+
+        pos2 = ReinforcementPanel.transform.position;
+        pos2.y = -18;
     }
 
     public void Reborn() // 환생 버튼
@@ -80,13 +89,15 @@ public class ButtonManager : MonoBehaviour
     // 강화 패널 열기
     public void ReinforcementOpen()
     {
-        ReinforcementPanel.SetActive(true);
+        ReinforcementPanel.transform.position = pos2;
+        // ReinforcementPanel.SetActive(true);
     }
 
     // 강화 패널 닫기
     public void ReinforcementClose()
     {
-        ReinforcementPanel.SetActive(false);
+        ReinforcementPanel.transform.position = pos;
+        // ReinforcementPanel.SetActive(false);
     }
 
     public void AcheivementOpen()
