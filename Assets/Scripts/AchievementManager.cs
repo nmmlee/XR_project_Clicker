@@ -43,5 +43,12 @@ public class AchievementManager : MonoBehaviour
             achievementNameText[i].text = achievementList.achievementsInfo[i].achievementName;
             achievementExplanationText[i].text = achievementList.achievementsInfo[i].explanation;
         }
+
+        
+    }
+
+    private void Update()
+    {
+        DataController.GetInstance().LoadAchievement(this);
     }
 }

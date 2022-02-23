@@ -41,6 +41,8 @@ public class AchievementChecker : MonoBehaviour
         AchievementMoney();
         AchievementUnlock();
         AchievementMaxLevel();
+
+        DataController.GetInstance().SaveAchievement(achievementManager);
     }
 
     public void AchievementMoney()

@@ -67,17 +67,20 @@ public class ButtonManager : MonoBehaviour
                 // 버튼 텍스트 업데이트
                 upgradeButtons[i].UpdateUpgrade();
                 upgradeButtons[i].UpdateUI();
+                DataController.GetInstance().SaveUpgradeButton(upgradeButtons[i]);
 
             }
             DataController.GetInstance().AddPayGoods(5); // 유료 재화 추가
             DataController.GetInstance().SetGoldPerClick(8); // 클릭 당 무료 재화 건물 8개-> 8
             namePanel.SetActive(true);
 
-            rebornPossible = 0;
+            
         }
 
         else
             Debug.Log("10렙 안 됨");
+
+        rebornPossible = 0;
     }
 
     // 저장된 데이터 모두 삭제

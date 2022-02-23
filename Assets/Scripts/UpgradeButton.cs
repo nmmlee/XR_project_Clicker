@@ -49,6 +49,17 @@ public class UpgradeButton : MonoBehaviour
 
     public void UpdateUI() // text 업데이트
     {
+        MaxLevelCheck();
         upgradeDisplayer.text = buildingName + "\nCost : " + buildingCost + "\nLevel : " + buildLevels;
+    }
+
+    public void MaxLevelCheck()
+    {
+        if (buildLevels >= 29)
+        {
+            this.GetComponent<Button>().interactable = false;
+        }
+        else
+            this.GetComponent<Button>().interactable = true;
     }
 }

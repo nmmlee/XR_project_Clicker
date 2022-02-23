@@ -276,6 +276,38 @@ public class DataController : MonoBehaviour
         }
     }
 
+    public void SaveAchievement(AchievementManager achievementManager)
+    {
+        for (int i = 0; i < achievementManager.achievementList.achievementsInfo.Length; i++)
+        {
+            if (achievementManager.achievementList.achievementsInfo[i].isAchieve == true)
+            {
+                PlayerPrefs.SetInt(achievementManager.achievementList.achievementsInfo[i].achievementName + "isAchieve", 1);
+            }
+
+            else
+            {
+                PlayerPrefs.SetInt(achievementManager.achievementList.achievementsInfo[i].achievementName + "isAchieve", 0);
+            }
+        }
+    }
+
+    public void LoadAchievement(AchievementManager achievementManager)
+    {
+        for (int i = 0; i < achievementManager.achievementList.achievementsInfo.Length; i++)
+        {
+            if (PlayerPrefs.GetInt(achievementManager.achievementList.achievementsInfo[i].achievementName + "isAchieve") == 1)
+            {
+                achievementManager.achievementList.achievementsInfo[i].isAchieve = true;
+            }
+
+            else
+            {
+                achievementManager.achievementList.achievementsInfo[i].isAchieve = false;
+            }
+        }
+    }
+
     public int GetGoldPerSec() // ÃÊ´ç µ· ÃÑÇÕ ±¸ÇÏ±â
     {
         int totalGoldPerSec = 0;
