@@ -7,6 +7,7 @@ public class EvaluateManager : MonoBehaviour
 {
     public DataController dataController;
     public ButtonManager buttonManager;
+    public AchievementManager achievementManager;
 
     public Text classText;  // 학교 등급 텍스트
     public Text AchievementText; // 평가 내용 텍스트
@@ -46,6 +47,9 @@ public class EvaluateManager : MonoBehaviour
 
     public void Evaluation()
     {
+        // 시간 멈추기
+        Time.timeScale = 0;
+
         // 연도 새로고침
         dataController.currentYear = dataController.year[dataController.nameNumber - 1];
 
@@ -61,7 +65,13 @@ public class EvaluateManager : MonoBehaviour
         }
 
         // 달성한 업적의 수
-        // valueAchievement = 
+        for (int i = 0; i < achievementManager.achievementList.achievementsInfo.Length; i++)
+        {
+            if (achievementManager.achievementList.achievementsInfo[i].isAchieve == true)
+            {
+                valueAchievement++;
+            }
+        }
 
         // 칭호의 수
         // valueTitle = 
@@ -110,7 +120,7 @@ public class EvaluateManager : MonoBehaviour
             finalClass = 10;
         }
 
-        AchievementText.text = "재산 (총 소비한 돈) : " + dataController.GetTotalGold() + "원\n" + valueGold + "points\n시설(업그레이드 횟수) : " + valueFacility / 5 + "회\n" + valueFacility + "points\n업적 달성 횟수 : " + valueAchievement / 10 + "회\n" + valueAchievement + "points\n보유 칭호 수 : " + valueTitle / 10 + "개\n" + valueTitle + "points\n\n총합 : " + totalValue + "points";
+        AchievementText.text = "재산 (총 소비한 돈) : " + dataController.GetTotalGold() + "원\n" + valueGold + "points\n시설(업그레이드 횟수) : " + valueFacility / 5 + "회\n" + valueFacility + "points\n업적 달성 횟수 : " + valueAchievement + "회\n" + valueAchievement + "points\n보유 칭호 수 : " + valueTitle / 10 + "개\n" + valueTitle + "points\n\n총합 : " + totalValue + "points";
 
         // 점수에 따라 평가하는 코드
         switch (finalClass)
@@ -132,5 +142,6 @@ public class EvaluateManager : MonoBehaviour
     public void onClose()
     {
         gameObject.SetActive(false);
+        Time.timeScale = 1; // 시간 다시 진행
     }
 }
