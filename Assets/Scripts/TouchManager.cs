@@ -1,7 +1,6 @@
-
 using UnityEngine;
 
-public class TouchManager : MonoBehaviour
+public class TouchManager: MonoBehaviour
 {
     [SerializeField] private RectTransform _zoomTargetRt;
 

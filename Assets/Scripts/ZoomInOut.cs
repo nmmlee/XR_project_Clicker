@@ -1,48 +1,79 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ZoomInOut: MonoBehaviour
+public class ZoomInOut : MonoBehaviour
 {
-    public float perspectiveZoomSpeed = 0.5f;        // The rate of change of the field of view in perspective mode.
-    public float orthoZoomSpeed = 0.5f;        // The rate of change of the orthographic size in orthographic mode.
+    const int MAX_X = 5; 
+    const int MIN_X = -5; 
+    const int MAX_Y = 5; 
+    const int MIN_Y = -5; 
+    const float fscale = 0.01f; 
+    const float zoomSpeed = 0.01f;
 
+
+    Camera cam; 
+    Vector2 vscale = new Vector2(fscale, fscale); 
+    Vector2 startPos; Vector2 curPos; 
+    Vector2 change; 
+    bool hold = false;
+
+
+    void Start() 
+    { 
+        cam = GetComponent<Camera>();
+    }
 
     void Update()
-    {
-        // If there are two touches on the device...
-        if (Input.touchCount == 2)
+    { 
+        // swipe
+        if (Input.touchCount == 1)
         {
-            // Store both touches.
-            Touch touchZero = Input.GetTouch(0);
-            Touch touchOne = Input.GetTouch(1);
-
-            // Find the position in the previous frame of each touch.
-            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-
-            // Find the magnitude of the vector (the distance) between the touches in each frame.
-            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-
-            // Find the difference in the distances between each frame.
-            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-
-            // If the camera is orthographic...
-            if (GetComponent<Camera>().orthographic)
+            if (Input.GetMouseButtonDown(0))
             {
-                // ... change the orthographic size based on the change in distance between the touches.
-                GetComponent<Camera>().orthographicSize += deltaMagnitudeDiff * orthoZoomSpeed;
-
-                // Make sure the orthographic size never drops below zero.
-                GetComponent<Camera>().orthographicSize = Mathf.Max(GetComponent<Camera>().orthographicSize, 0.1f);
+                this.hold = true;
+                this.startPos = Input.mousePosition;
             }
-            else
+            else if (Input.GetMouseButtonUp(0))
             {
-                // Otherwise change the field of view based on the change in distance between the touches.
-                GetComponent<Camera>().fieldOfView += deltaMagnitudeDiff * perspectiveZoomSpeed;
-
-                // Clamp the field of view to make sure it's between 0 and 180.
-                GetComponent<Camera>().fieldOfView = Mathf.Clamp(GetComponent<Camera>().fieldOfView, 0.1f, 179.9f);
+                this.hold = false;
+            }
+            if (this.hold)
+            {
+                this.curPos = Input.mousePosition;
+                transform.Translate((cam.orthographicSize / 5) * vscale * (startPos - curPos));
+                if (outside()) transform.Translate((cam.orthographicSize / 5) * vscale * (curPos - startPos));
+                startPos = curPos;
             }
         }
+    // zoom
+        else if (Input.touchCount > 1) 
+        {
+            // store both touches
+            Touch touchZero = Input.GetTouch(0); 
+            Touch touchOne = Input.GetTouch(1);
+
+            // check position
+            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+            // check deltas (original current)
+            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+            // check how much zoom in / out
+            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag; 
+            // zoom camera
+            float newSize = cam.orthographicSize + (deltaMagnitudeDiff * zoomSpeed); 
+            newSize = Mathf.Max(newSize, 1f); 
+            newSize = Mathf.Min(newSize, 6f); 
+            cam.orthographicSize = newSize; 
+        }
+    }
+    bool outside()
+    {
+        if (transform.position.x > MAX_X || transform.position.x < MIN_X 
+            || transform.position.y > MAX_Y || transform.position.y < MIN_Y)
+            return true; 
+        else return false; 
     }
 }
+
