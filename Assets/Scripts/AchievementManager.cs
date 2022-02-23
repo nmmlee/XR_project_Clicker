@@ -23,6 +23,7 @@ public class AchievementManager : MonoBehaviour
 
     public Text[] achievementNameText;
     public Text[] achievementExplanationText;
+    public Image[] achievementImages;
 
     void Awake()
     {
@@ -47,8 +48,21 @@ public class AchievementManager : MonoBehaviour
         
     }
 
-    private void Update()
+    void Update()
     {
         DataController.GetInstance().LoadAchievement(this);
+
+        for (int i = 0; i < achievementList.achievementsInfo.Length; i++)
+        {
+            if (achievementList.achievementsInfo[i].isAchieve == true)
+            {
+                achievementImages[i].color = new Color(255, 255, 255, 255);
+            }
+
+            else
+            {
+                achievementImages[i].color = new Color(255, 255, 255, 0);
+            }
+        }
     }
 }

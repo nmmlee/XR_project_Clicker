@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ItemButton : MonoBehaviour
 {
     public Text itemDisPlayer;
+    public Text costDisPlayer;
     public string itemName;
 
     public int level;
@@ -68,8 +69,8 @@ public class ItemButton : MonoBehaviour
 
     public void UpdateUI()
     {
-        itemDisPlayer.text = itemName + "\nlevel : " + level + "\nCost : " + currentCost + "\nGold Per Sec : " + goldPerSec
-            + "\nisPurchase : " + isPurchase;
+        itemDisPlayer.text = "±³À° Lv." + level;
+        costDisPlayer.text = currentCost.ToString();
     }
 
 }

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UpgradeButton : MonoBehaviour
 {
     public Text upgradeDisplayer; // 모든 text
+    public Text costDisplayer;
+    public Text buildingNameDisplayer;
     public CostManager costManager; // csv 정보 불러온 것
     public string buildingName; // 건물 이름
 
@@ -50,7 +52,9 @@ public class UpgradeButton : MonoBehaviour
     public void UpdateUI() // text 업데이트
     {
         MaxLevelCheck();
-        upgradeDisplayer.text = buildingName + "\nCost : " + buildingCost + "\nLevel : " + buildLevels;
+        buildingNameDisplayer.text = buildingName;
+        costDisplayer.text = buildingCost.ToString();
+        upgradeDisplayer.text = "건물 Lv." + buildLevels.ToString();
     }
 
     public void MaxLevelCheck()

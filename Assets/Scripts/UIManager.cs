@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
     public Text goldPerClickDisplayer; // 클릭 당 무료 재화 text
     public Text goldPerSecDisPlayer; // 초당 무료 재화 text
     public Text payGoodsDisPlayer; // 유료 재화 text
-    public Text totalGoodsDisPlayer;
 
     public Text semesterText; // 학기 텍스트
     public Text presidentNumText; // 몇 대 총장 텍스트
@@ -31,7 +30,6 @@ public class UIManager : MonoBehaviour
         goldPerClickDisplayer.text = "GOLD PER CLICK : " + DataController.GetInstance().GetGoldPerClick();
         goldPerSecDisPlayer.text = "GOLD PER SEC : " + DataController.GetInstance().GetGoldPerSec();
         payGoodsDisPlayer.text = DataController.GetInstance().GetPayGoods().ToString();
-        totalGoodsDisPlayer.text = DataController.GetInstance().GetTotalGold().ToString();
 
         UpdateText();
     }

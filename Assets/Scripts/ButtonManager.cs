@@ -7,6 +7,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject ReinforcementPanel;
     public GameObject namePanel;
     public GameObject AcheivementPanel;
+    public GameObject RebornErrorPanel;
 
     public UpgradeButton[] upgradeButtons;
 
@@ -27,14 +28,16 @@ public class ButtonManager : MonoBehaviour
         costManager = GetComponent<CostManager>();
 
         pos = ReinforcementPanel.transform.position;
-        pos.y = -1058;
+        pos.y = -1290;
 
         pos2 = ReinforcementPanel.transform.position;
-        pos2.y = -18;
+        pos2.y = 210;
     }
 
     public void Reborn() // 환생 버튼
     {
+        Debug.Log(rebornPossible);
+
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
             if (upgradeButtons[i].buildLevels >= 10)
@@ -43,8 +46,6 @@ public class ButtonManager : MonoBehaviour
             }
 
         }
-
-        Debug.Log(rebornPossible);
 
         if (rebornPossible == 8)
         {
@@ -73,13 +74,21 @@ public class ButtonManager : MonoBehaviour
             DataController.GetInstance().AddPayGoods(5); // 유료 재화 추가
             DataController.GetInstance().SetGoldPerClick(8); // 클릭 당 무료 재화 건물 8개-> 8
             namePanel.SetActive(true);
-
         }
 
         else
+        {
             Debug.Log("10렙 안 됨");
+            RebornErrorPanel.SetActive(true);
+        }
+
 
         rebornPossible = 0;
+    }
+
+    public void RebornErrorPanelClose()
+    {
+        RebornErrorPanel.SetActive(false);
     }
 
     // 저장된 데이터 모두 삭제
