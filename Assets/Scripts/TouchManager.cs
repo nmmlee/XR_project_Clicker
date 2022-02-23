@@ -1,71 +1,90 @@
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchManager : MonoBehaviour
 {
-    const int MAX_X = 3;
-    const int MIN_X =-1;
-    const int MAX_Y = 10;
-    const int MIN_Y = 2;
-    const float fscale = 0.01f;
-    const float zoomSpeed = 0.01f;
+    [SerializeField] private RectTransform _zoomTargetRt;
 
+    private readonly float _ZOOM_IN_MAX = 16f;
+    private readonly float _ZOOM_OUT_MAX = 1f;
+    private readonly float _ZOOM_SPEED = 1.5f;
 
-    Vector2 vscale = new Vector2(fscale, fscale);
-    Vector2 startPos; Vector2 curPos;
-    Vector2 change;
-    bool hold = false;
+    private bool _isZooming = false;
 
-    void Update()
+    private void Update()
     {
-        if (Input.touchCount == 1)
+        if (Input.touchCount == 2)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                this.hold = true;
-                this.startPos = Input.mousePosition;
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                this.hold = false;
-            }
-            if (this.hold)
-            {
-                this.curPos = Input.mousePosition;
-                transform.Translate((GetComponent<Camera>().orthographicSize / 5) * vscale * (startPos - curPos));
-                if (outside()) transform.Translate((GetComponent<Camera>().orthographicSize / 5) * vscale * (curPos - startPos));
-                startPos = curPos;
-            }
+            ZoomAndPan();
         }
-        // zoom
-        else if (Input.touchCount > 1)
+        else
         {
-            // store both touches
-            Touch touchZero = Input.GetTouch(0);
-            Touch touchOne = Input.GetTouch(1);
-            // check position
-            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-            // check deltas (original current)
-            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-            // check how much zoom in / out
-            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-            // zoom camera
-            float newSize = GetComponent<Camera>().orthographicSize + (deltaMagnitudeDiff * zoomSpeed);
-            newSize = Mathf.Max(newSize, 1f);
-            newSize = Mathf.Min(newSize, 5f);
-            GetComponent<Camera>().orthographicSize = newSize;
+            _isZooming = false;
         }
     }
-    // check if outside the boundary
-    bool outside()
+
+    private void ZoomAndPan()
     {
-        if (transform.position.x > MAX_X || transform.position.x < MIN_X || transform.position.y > MAX_Y || transform.position.y < MIN_Y)
-            return true;
-        else return false;
+        if (_isZooming == false)
+        {
+            _isZooming = true;
+        }
+
+        /* get zoomAmount */
+        var prevTouchAPos = Input.GetTouch(0).position - Input.GetTouch(0).deltaPosition;
+        var prevTouchBPos = Input.GetTouch(1).position - Input.GetTouch(1).deltaPosition;
+        var curTouchAPos = Input.GetTouch(0).position;
+        var curTouchBPos = Input.GetTouch(1).position;
+        var deltaDistance =
+            Vector2.Distance(Normalize(curTouchAPos), Normalize(curTouchBPos))
+            - Vector2.Distance(Normalize(prevTouchAPos), Normalize(prevTouchBPos));
+        var currentScale = _zoomTargetRt.localScale.x;
+        var zoomAmount = deltaDistance * currentScale * _ZOOM_SPEED; // zoomAmount == deltaScale
+
+        /* clamp & zoom */
+        var zoomedScale = currentScale + zoomAmount;
+        if (zoomedScale < _ZOOM_OUT_MAX)
+        {
+            zoomedScale = _ZOOM_OUT_MAX;
+            zoomAmount = 0f;
+        }
+        if (_ZOOM_IN_MAX < zoomedScale)
+        {
+            zoomedScale = _ZOOM_IN_MAX;
+            zoomAmount = 0f;
+        }
+        _zoomTargetRt.localScale = zoomedScale * Vector3.one;
+
+        /* apply offset */
+        // offset is a value against movement caused by scale up & down
+        var pivotPos = _zoomTargetRt.anchoredPosition;
+        var fromCenterToInputPos = new Vector2(
+                Input.mousePosition.x - Screen.width * 0.5f,
+                Input.mousePosition.y - Screen.height * 0.5f);
+        var fromPivotToInputPos = fromCenterToInputPos - pivotPos;
+        var offsetX = (fromPivotToInputPos.x / zoomedScale) * zoomAmount;
+        var offsetY = (fromPivotToInputPos.y / zoomedScale) * zoomAmount;
+        _zoomTargetRt.anchoredPosition -= new Vector2(offsetX, offsetY);
+
+        /* get moveAmount */
+        var deltaPosTouchA = Input.GetTouch(0).deltaPosition;
+        var deltaPosTouchB = Input.GetTouch(1).deltaPosition;
+        var deltaPosTotal = (deltaPosTouchA + deltaPosTouchB) * 0.5f;
+        var moveAmount = new Vector2(deltaPosTotal.x, deltaPosTotal.y);
+
+        /* clamp & pan */
+        var clampX = (Screen.width * zoomedScale - Screen.width) * 0.5f;
+        var clampY = (Screen.height * zoomedScale - Screen.height) * 0.5f;
+        var clampedPosX = Mathf.Clamp(_zoomTargetRt.localPosition.x + moveAmount.x, -clampX, clampX);
+        var clampedPosY = Mathf.Clamp(_zoomTargetRt.localPosition.y + moveAmount.y, -clampY, clampY);
+        _zoomTargetRt.anchoredPosition = new Vector3(clampedPosX, clampedPosY);
+    }
+
+    private Vector2 Normalize(Vector2 position)
+    {
+        var normlizedPos = new Vector2(
+            (position.x - Screen.width * 0.5f) / (Screen.width * 0.5f),
+            (position.y - Screen.height * 0.5f) / (Screen.height * 0.5f));
+        return normlizedPos;
     }
 }
-
