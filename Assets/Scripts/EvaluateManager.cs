@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EvaluateManager : MonoBehaviour
 {
@@ -58,7 +59,6 @@ public class EvaluateManager : MonoBehaviour
         valueGold = dataController.GetTotalGold() / 1000;
 
         // 업그레이드 레벨
-        Debug.Log("" + buttonManager.upgradeButtons.Length);
         for (int i = 0; i < buttonManager.upgradeButtons.Length; i++)
         {
             valueFacility += buttonManager.upgradeButtons[i].buildLevels * 5;
@@ -143,5 +143,13 @@ public class EvaluateManager : MonoBehaviour
     {
         gameObject.SetActive(false);
         Time.timeScale = 1; // 시간 다시 진행
+
+        // 엔딩 코드 (미완)
+        /*
+        if (finalClass == 1)
+        {
+            SceneManager.LoadScene("EndingScene");
+        }
+        */
     }
 }

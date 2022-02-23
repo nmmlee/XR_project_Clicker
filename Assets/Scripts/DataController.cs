@@ -19,6 +19,7 @@ public class DataController : MonoBehaviour
                 GameObject container = new GameObject("DataController");
                 instance = container.AddComponent<DataController>();
             }
+            DontDestroyOnLoad(instance);
         }
         return instance;
     }
@@ -343,7 +344,7 @@ public class DataController : MonoBehaviour
     {
         if (nameNumber > 0)
         {
-            if (year[nameNumber - 1] != currentYear)
+            if (year[nameNumber - 1] != currentYear && year[nameNumber - 1] != 0)
             {
                 evaluatePanel.SetActive(true);
 

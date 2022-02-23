@@ -49,7 +49,6 @@ public class UIManager : MonoBehaviour
         presidentNumText.text = "" + dataController.nameNumber + "´ë ÃÑÀå";
 
         // ÃÑÀå ÀÓ±â °è»ê
-        Debug.Log("" + playerNum);
         dataController.year[playerNum] = (int)dataController.playTime / 60;
 
         if (dataController.playTime % 60 > 45)
