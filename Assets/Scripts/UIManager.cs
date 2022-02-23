@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public Text totalGoodsDisPlayer;
 
     public Text semesterText; // 학기 텍스트
+    public Text presidentNumText; // 몇 대 총장 텍스트
 
     public string playerName; // 플레이어 이름
     public int playerNum; // 몇 대 총장인지
@@ -46,7 +47,11 @@ public class UIManager : MonoBehaviour
         playerNum = dataController.nameNumber - 1; // 몇 대 총장인지
         playerName = dataController.Names[playerNum]; // 플레이어 이름
 
+        // 몇 대 총장인지 텍스트 수정
+        presidentNumText.text = "" + dataController.nameNumber + "대 총장";
 
+        // 총장 임기 계산
+        Debug.Log("" + playerNum);
         dataController.year[playerNum] = (int)dataController.playTime / 60;
 
         if (dataController.playTime % 60 > 45)
@@ -68,10 +73,10 @@ public class UIManager : MonoBehaviour
 
         switch (dataController.semester[playerNum])
         {
-            case 1: semesterText.text = "" + dataController.year[playerNum] + "년 " + "봄"; break;
-            case 2: semesterText.text = "" + dataController.year[playerNum] + "년 " + "여름"; break;
-            case 3: semesterText.text = "" + dataController.year[playerNum] + "년 " + "가을"; break;
-            case 4: semesterText.text = "" + dataController.year[playerNum] + "년 " + "겨울"; break;
+            case 1: semesterText.text = "" + (dataController.year[playerNum] + 1) + "년 " + "봄"; break;
+            case 2: semesterText.text = "" + (dataController.year[playerNum] + 1) + "년 " + "여름"; break;
+            case 3: semesterText.text = "" + (dataController.year[playerNum] + 1) + "년 " + "가을"; break;
+            case 4: semesterText.text = "" + (dataController.year[playerNum] + 1) + "년 " + "겨울"; break;
         }
 
     }

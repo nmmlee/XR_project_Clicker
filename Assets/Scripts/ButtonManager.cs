@@ -74,7 +74,6 @@ public class ButtonManager : MonoBehaviour
             DataController.GetInstance().SetGoldPerClick(8); // 클릭 당 무료 재화 건물 8개-> 8
             namePanel.SetActive(true);
 
-            
         }
 
         else

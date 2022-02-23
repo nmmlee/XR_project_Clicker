@@ -45,6 +45,9 @@ public class DataController : MonoBehaviour
     public int[] year; //몇 대 총장이 몇 년 까지 했는지
     public int[] semester; // 몇 대 총장이 몇 학기 까지 했는지
 
+    private int[] tempYear;
+    private int[] tempSemester;
+
     public int currentYear; // 현재 년도
 
     private void Awake()
@@ -230,10 +233,24 @@ public class DataController : MonoBehaviour
         namePanel.SetActive(false);
 
         Names.Add(currentname);
+
+        tempYear = new int[nameNumber];
+        tempSemester = new int[nameNumber];
+
+        tempYear = year;
+        tempSemester = semester;
+
         nameNumber++;
 
         year = new int[nameNumber]; // 몇 대 총장이 몇 년 까지 했는지
         semester = new int[nameNumber]; // 몇 대 총장이 몇 학기 까지 했는지
+
+        for (int i = 0; i < nameNumber - 1; i++)
+        {
+            year[i] = tempYear[i];
+            semester[i] = tempSemester[i];
+        }
+        playTime = 0;
 
         for (int i = 0; i < nameNumber; i++)
             Debug.Log(Names[i]);
