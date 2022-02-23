@@ -15,8 +15,8 @@ public class ZoomInOut : MonoBehaviour
             Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;//움직이기 전의 손가락 위치
             Vector2 touchTwoPrevPos = touchTwo.position - touchTwo.deltaPosition;
 
-            float preTouchDelta = (touchOnePrevPos - touchTwoPrevPos).magnitude;//현재 움직임의 크기
-            float touchDelta = (touchOne.position - touchTwo.position).magnitude;//과거
+            float preTouchDelta = (touchOnePrevPos - touchTwoPrevPos).magnitude;// 움직임의 크기
+            float touchDelta = (touchOne.position - touchTwo.position).magnitude;//현재 위치 크기
 
             float deltaMagDiff = preTouchDelta - touchDelta;//얼마큼 확대, 축소 할지
             
