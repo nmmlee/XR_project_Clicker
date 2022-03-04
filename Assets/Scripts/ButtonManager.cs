@@ -95,6 +95,7 @@ public class ButtonManager : MonoBehaviour
     public void delete()
     {
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("TotalGold");
     }
 
     // 강화 패널 열기
